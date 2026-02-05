@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<title>Will you be my Valentine? 💖</title>
+
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    background: #0f1c2e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+  }
+
+  .card {
+    background: white;
+    padding: 50px;
+    border-radius: 20px;
+    text-align: center;
+    width: 500px;
+  }
+
+  h1 {
+    margin-bottom: 20px;
+  }
+
+  .bear {
+    font-size: 60px;
+    margin-bottom: 10px;
+  }
+
+  .question {
+    font-size: 20px;
+    margin-bottom: 22px;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: center;
+    gap: 17px;
+  }
+
+  button {
+    padding: 17px 25px;
+    font-size: 22px;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: 0.25s;
+  }
+
+  .yes-button {
+    background: #ff4081;
+    color: white;
+  }
+
+  .no-button {
+    background: #e0e0e0;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+  <div class="bear">🐻💗</div>
+
+  <p class="question">Will you be my Valentine?</p>
+
+  <div class="buttons">
+    <button class="yes-button" onclick="handleYesClick()">Sì</button>
+    <button class="no-button" onclick="handleNoClick()">No</button>
+  </div>
+</div>
+
+<script>
+  // === SCRIPT ISPIRATO A QUELLO DELLA FOTO ===
+
+  let messageIndex = 0;
+
+  const messages = [
+    "Pensaci meglio",
+    "Sei proprio sicura?",
+    "Daiiii 💔",
+    "Mi spezzi il cuore 😭",
+    "Ok basta..."
+  ];
+
+  function handleNoClick() {
+    const noButton = document.querySelector('.no-button');
+    const yesButton = document.querySelector('.yes-button');
+
+    // cambia testo del NO
+    noButton.textContent = messages[messageIndex];
+    messageIndex = (messageIndex + 1) % messages.length;
+
+    // ingrandisce il SI
+    const currentSize = parseFloat(
+      window.getComputedStyle(yesButton).fontSize
+    );
+    yesButton.style.fontSize = `${currentSize * 1.4}px`;
+
+    // dopo un po' il NO sparisce
+    if (currentSize > 60) {
+      noButton.style.display = 'none';
+    }
+  }
+
+  function handleYesClick() {
+    document.body.innerHTML = `
+      <div style="
+        color: white;
+        font-family: Arial;
+        text-align: center;
+      ">
+        <h1>YEEEE 💖</h1>
+      </div>
+    `;
+  }
+</script>
+
+</body>
+</html>
